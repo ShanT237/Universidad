@@ -14,14 +14,14 @@ public class MascotaTest {
     @Test
     public void datosCompletos() {
         LOG.info("Iniciando test datos completos");
-        Mascota mascota1 = new Mascota("George", "Hamster", "Ruso", (byte) 1, "Cafe", "50 gramos");
+        Mascota mascota1 = new Mascota("George", 500, "Hamster", "Ruso", (byte) 1, "Cafe", "50 kg");
 
         assertEquals("George", mascota1.nombre());
         assertEquals("Hamster", mascota1.especie());
         assertEquals("Ruso", mascota1.raza());
         assertEquals((byte) 1, mascota1.edad().byteValue());
         assertEquals("Cafe", mascota1.color());
-        assertEquals("50 gramos", mascota1.peso());
+        assertEquals("50 kg", mascota1.peso());
 
         LOG.info("Finalizando test datos completos");
 
@@ -31,7 +31,7 @@ public class MascotaTest {
     public void datosNulos() {
         LOG.info("Iniciando Test datos nulos");
 
-        assertThrows(Throwable.class, () -> new Mascota(null, null, null, (byte) 1, null, null));
+        assertThrows(Throwable.class, () -> new Mascota(null, 500, null, null, (byte) 1, null, null));
 
         LOG.info("Finalizando Test datos nulos");
 
@@ -41,13 +41,12 @@ public class MascotaTest {
     public void datosVacios() {
         LOG.info("Iniciando Test datos vacios");
 
-        Mascota mascota = new Mascota("", "", "", (byte) 0, "", "");
+        Mascota mascota = new Mascota("", 0, "", "", (byte) 1, "", "kg");
 
         assertTrue(mascota.nombre().isEmpty());
         assertTrue(mascota.especie().isEmpty());
         assertTrue(mascota.raza().isEmpty());
         assertTrue(mascota.color().isEmpty());
-        assertTrue(mascota.peso().isEmpty());
 
         LOG.info("Finalizando Test datos vacios");
     }
@@ -55,7 +54,7 @@ public class MascotaTest {
     @Test
     public void edadNegativa() {
         LOG.info("Iniciando Test edad negativa");
-        assertThrows(Throwable.class, () -> new Mascota("George", "Hamster", "Ruso", (byte) -1, "Cafe", "50 gramos"));
+        assertThrows(Throwable.class, () -> new Mascota("George", 0, "Hamster", "Ruso", (byte) -1, "Cafe", "50 kg"));
 
         LOG.info("Iniciando Test edad negativa");
     }
@@ -64,7 +63,7 @@ public class MascotaTest {
     public void nombreInvalido() {
         LOG.info("Iniciando Test nombre invalido");
         assertThrows(Throwable.class, () -> {
-            new Mascota("47", "Hamster", "Ruso", (byte) 1, "Cafe", "50 gramos");
+            new Mascota("47", 0, "Hamster", "Ruso", (byte) 1, "Cafe", "50 kg");
 
             LOG.info("Iniciando Test nombre invalido");
         });
